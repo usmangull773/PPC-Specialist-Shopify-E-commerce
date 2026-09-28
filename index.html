@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Growth Snapshot for NorthWood Candle &amp; Craft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#211B17; --ink2:#2b2119; --cream:#FAF6EF; --card:#FFFFFF;
+    --amber:#D8912F; --amber-deep:#B9772044; --amber-soft:#F7E8CE;
+    --flame:#D9633A; --flame-soft:#FBE3D7;
+    --text:#2A2320; --muted:#7C6F63; --line:#ECE2D3; --good:#3E7C5A;
+    --shadow:0 1px 2px rgba(33,27,23,.04), 0 8px 26px rgba(33,27,23,.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:"Inter",system-ui,sans-serif;color:var(--text);background:var(--cream);
+    -webkit-font-smoothing:antialiased;line-height:1.5;
+  }
+  .app{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+
+  /* Sidebar */
+  .side{
+    background:linear-gradient(180deg,var(--ink) 0%,var(--ink2) 100%);
+    color:#EFE7DC;padding:26px 20px;display:flex;flex-direction:column;
+    position:sticky;top:0;height:100vh;
+  }
+  .brand{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  .flame{width:26px;height:26px;flex:0 0 auto}
+  .brand b{font-family:"Inter";font-weight:700;font-size:15px;letter-spacing:.2px}
+  .brand span{display:block;font-size:11px;color:#B9AB9B;font-weight:500;margin-top:1px}
+  .side .lede{font-size:12px;color:#B4A594;margin:16px 0 20px;line-height:1.55}
+  nav{display:flex;flex-direction:column;gap:4px}
+  .navbtn{
+    text-align:left;background:transparent;border:0;color:#D9CDBE;cursor:pointer;
+    font-family:"Inter";font-size:13.5px;font-weight:500;padding:11px 12px;border-radius:9px;
+    display:flex;align-items:center;gap:10px;transition:.15s;
+  }
+  .navbtn .n{font-size:11px;color:#8f8171;width:16px}
+  .navbtn:hover{background:rgba(255,255,255,.05);color:#fff}
+  .navbtn.active{background:var(--amber);color:#26190c;font-weight:600}
+  .navbtn.active .n{color:#5c3f14}
+  .side .foot{margin-top:auto;padding-top:20px;border-top:1px solid rgba(255,255,255,.09)}
+  .prep{font-size:11px;color:#9c8e7d;line-height:1.5}
+  .prep b{color:#EADFD0;font-weight:600;display:block;font-size:12px;margin-top:2px}
+  .cta{
+    display:block;margin-top:14px;text-align:center;background:var(--flame);color:#fff;
+    text-decoration:none;font-weight:600;font-size:12.5px;padding:10px;border-radius:9px;
+  }
+
+  /* Main */
+  main{padding:40px 44px 56px;max-width:100%}
+  .tab{display:none;animation:fade .25s ease}
+  .tab.show{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .eyebrow{font-size:11.5px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:var(--amber)}
+  h1{font-family:"Fraunces";font-weight:500;font-size:40px;line-height:1.08;margin:12px 0 14px;letter-spacing:-.5px}
+  h1 .hl{color:var(--flame)}
+  h2{font-family:"Fraunces";font-weight:500;font-size:28px;letter-spacing:-.3px;margin-bottom:6px}
+  .sub{font-size:15px;color:var(--muted);max-width:640px}
+  .sectlead{font-size:14px;color:var(--muted);max-width:660px;margin-bottom:26px}
+
+  .grid{display:grid;gap:16px;margin-top:26px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow)}
+
+  .stat .k{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--flame)}
+  .stat .v{font-family:"Fraunces";font-size:30px;font-weight:500;margin:8px 0 4px;letter-spacing:-.4px}
+  .stat.amber .k{color:var(--amber)}
+  .stat p{font-size:13px;color:var(--muted)}
+
+  .callout{margin-top:26px;background:var(--amber-soft);border:1px solid #E8D4AE;border-radius:12px;padding:16px 18px;font-size:14px}
+  .callout b{color:#8a5a12}
+
+  .diag .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.4px;color:#fff;background:var(--flame);padding:3px 9px;border-radius:20px;margin-bottom:12px}
+  .diag h3{font-family:"Inter";font-size:16px;font-weight:700;margin-bottom:12px}
+  .row{display:grid;grid-template-columns:92px 1fr;gap:8px 12px;font-size:13.5px;align-items:start}
+  .row .lab{font-weight:600;color:var(--muted);font-size:12px;padding-top:1px}
+  .row .fix{color:var(--good);font-weight:500}
+  .row + .row{margin-top:9px}
+
+  /* toggle */
+  .toggle{display:inline-flex;background:#F0E7D8;border:1px solid var(--line);border-radius:11px;padding:4px;gap:4px;margin-bottom:22px}
+  .toggle button{border:0;background:transparent;cursor:pointer;font-family:"Inter";font-weight:600;font-size:13.5px;color:var(--muted);padding:9px 18px;border-radius:8px;transition:.15s}
+  .toggle button.on{background:#fff;color:var(--text);box-shadow:var(--shadow)}
+  .persona{display:none}
+  .persona.show{display:block}
+  .pcard .lab{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+  .pcard p{font-size:13.5px;color:var(--text)}
+  .pcard .who{font-size:14px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
+  .chip{font-size:12px;background:#F4ECDD;border:1px solid var(--line);border-radius:20px;padding:5px 11px;color:#5f5346}
+  .note{margin-top:16px;font-size:13px;color:var(--muted);background:#fff;border:1px dashed #E0CFB4;border-radius:10px;padding:12px 14px}
+  .note b{color:var(--flame)}
+
+  /* timeline */
+  .phase{position:relative;padding-left:20px}
+  .phase::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:3px;background:var(--amber-soft);border-radius:3px}
+  .phase .when{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--amber)}
+  .phase h3{font-family:"Inter";font-size:16px;font-weight:700;margin:4px 0 6px}
+  .phase p{font-size:13.5px;color:var(--muted)}
+  .report{margin-top:8px}
+  .report .rk{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+  .rtiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+  .rtile{background:#FBF7F0;border:1px solid var(--line);border-radius:11px;padding:14px;text-align:center}
+  .rtile .rv{font-family:"Fraunces";font-size:22px;color:var(--text)}
+  .rtile .up,.rtile .down{color:var(--good);font-size:18px;font-weight:700}
+  .rtile .rl{font-size:11px;color:var(--muted);margin-top:3px}
+  .samplebadge{font-size:11px;color:var(--muted);font-style:italic;margin-top:10px}
+
+  /* proof */
+  .proofrow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .pf .v{font-family:"Fraunces";font-size:30px;letter-spacing:-.4px;color:var(--flame)}
+  .pf .l{font-size:12.5px;color:var(--muted);margin-top:4px}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+  .badge{font-size:12.5px;font-weight:600;background:var(--ink);color:#F0E7DA;border-radius:20px;padding:7px 14px}
+  .closer{margin-top:24px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--flame);border-radius:12px;padding:20px 22px;box-shadow:var(--shadow)}
+  .closer p{font-size:14.5px;max-width:640px}
+  .closer .big{font-family:"Fraunces";font-size:19px;margin-bottom:8px}
+
+  .footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted)}
+
+  @media (max-width:860px){
+    .app{grid-template-columns:1fr}
+    .side{position:static;height:auto;flex-direction:column}
+    nav{flex-direction:row;flex-wrap:wrap}
+    .side .lede,.side .foot{display:none}
+    main{padding:26px 20px 44px}
+    h1{font-size:30px}
+    .g3,.g2,.proofrow,.rtiles{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:520px){
+    .g3,.g2,.proofrow,.rtiles{grid-template-columns:1fr}
+    .row{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand">
+      <svg class="flame" viewBox="0 0 24 24" fill="none"><path d="M12 2.5c2.4 3 5.5 5.2 5.5 9.4A5.5 5.5 0 0 1 12 17.4a5.5 5.5 0 0 1-5.5-5.5c0-1.8.8-3.1 1.9-4.3.5 1 1.3 1.6 2.2 1.8C9.7 7.3 10.6 4.9 12 2.5Z" fill="#D9633A"/><path d="M12 21.5c-2.2 0-4-1.3-4-3.3 0-1.6 1.4-2.6 2.2-3.6.3.7.9 1.1 1.6 1.2-.3-1 .2-2.2 1.2-3.2.9 1 2.9 2.4 2.9 4.6 0 2.4-1.9 4.3-3.9 4.3Z" fill="#D8912F"/></svg>
+      <div><b>Usman Gull</b><span>Google Ads x Shopify</span></div>
+    </div>
+    <p class="lede">A short, honest snapshot of your paid search, and how I would turn spend you are already making into revenue.</p>
+    <nav id="nav">
+      <button class="navbtn active" data-tab="snap"><span class="n">01</span> Snapshot</button>
+      <button class="navbtn" data-tab="diag"><span class="n">02</span> What's leaking</button>
+      <button class="navbtn" data-tab="split"><span class="n">03</span> Retail vs Wholesale</button>
+      <button class="navbtn" data-tab="plan"><span class="n">04</span> First 30 days</button>
+      <button class="navbtn" data-tab="proof"><span class="n">05</span> Why me</button>
+    </nav>
+    <div class="foot">
+      <p class="prep">Prepared for<b>NorthWood Candle &amp; Craft</b></p>
+      <a class="cta" data-tab="proof" href="#">Available to start this week</a>
+    </div>
+  </aside>
+
+  <main>
+    <!-- SNAPSHOT -->
+    <section class="tab show" id="snap">
+      <div class="eyebrow">Growth Snapshot</div>
+      <h1>Your Google Ads are running right now, while most of your store reads <span class="hl">Sold Out</span>.</h1>
+      <p class="sub">A short, honest look at what I noticed on your store, what it is likely costing you, and how I would fix it in the first 30 days. Everything here comes back to the one number that matters to you, your ROAS.</p>
+
+      <div class="grid g3">
+        <div class="card stat">
+          <div class="k">Live right now</div>
+          <div class="v">Ads running</div>
+          <p>Your Google Ads are actively serving, across image and video formats.</p>
+        </div>
+        <div class="card stat">
+          <div class="k">Availability</div>
+          <div class="v">Nearly all Sold Out</div>
+          <p>Almost every product, 450+ scents and hundreds of supplies, currently shows unavailable.</p>
+        </div>
+        <div class="card stat amber">
+          <div class="k">Audience</div>
+          <div class="v">One mixed funnel</div>
+          <p>Retail hobbyists and wholesale buyers share the same campaigns and pages.</p>
+        </div>
+      </div>
+
+      <div class="callout"><b>The good news:</b> every one of these is fixable, and fixing them is exactly where your ROAS is hiding. Spend is already flowing, the foundation underneath it just needs to catch up.</div>
+    </section>
+
+    <!-- DIAGNOSIS -->
+    <section class="tab" id="diag">
+      <div class="eyebrow">Diagnosis</div>
+      <h2>Where the budget is leaking</h2>
+      <p class="sectlead">Four things I noticed, in plain terms. For each: what I saw, why it costs you, and the fix.</p>
+      <div class="grid g2 diag">
+        <div class="card">
+          <span class="tag">Leak 01</span>
+          <h3>Ads live, catalog sold out</h3>
+          <div class="row"><span class="lab">Noticed</span><span>Ads are driving clicks while almost the entire catalog shows Sold Out.</span></div>
+          <div class="row"><span class="lab">Costs you</span><span>Paid clicks land on products no one can buy, and Google can drop most of the feed on availability, so Shopping and PMax have little to show.</span></div>
+          <div class="row"><span class="lab">The fix</span><span class="fix">Sync live stock to the feed and stop serving unavailable products automatically.</span></div>
+        </div>
+        <div class="card">
+          <span class="tag">Leak 02</span>
+          <h3>Feed quality and policy risk</h3>
+          <div class="row"><span class="lab">Noticed</span><span>The feed carries non product items and lookalike fragrance names.</span></div>
+          <div class="row"><span class="lab">Costs you</span><span>These trigger Merchant Center disapprovals and weak matches, so your best products stay buried.</span></div>
+          <div class="row"><span class="lab">The fix</span><span class="fix">Clean the feed, rewrite titles around what buyers actually search, remove policy risk items.</span></div>
+        </div>
+        <div class="card">
+          <span class="tag">Leak 03</span>
+          <h3>ROAS you cannot see</h3>
+          <div class="row"><span class="lab">Noticed</span><span>Tracking is in place, but purchase value is not clearly confirmed end to end.</span></div>
+          <div class="row"><span class="lab">Costs you</span><span>If revenue value is not passed correctly, ROAS cannot be measured or optimized, the one number you care about.</span></div>
+          <div class="row"><span class="lab">The fix</span><span class="fix">Verify GA4 and Google Ads conversions with real revenue, so bidding optimizes to ROAS.</span></div>
+        </div>
+        <div class="card">
+          <span class="tag">Leak 04</span>
+          <h3>Two buyers, one funnel</h3>
+          <div class="row"><span class="lab">Noticed</span><span>Retail hobbyists and wholesale buyers are served by the same campaigns and pages.</span></div>
+          <div class="row"><span class="lab">Costs you</span><span>Two very different buyers compete for the same budget, so both convert below potential.</span></div>
+          <div class="row"><span class="lab">The fix</span><span class="fix">Split them at the keyword, campaign, and landing page level. See the next tab.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPLIT -->
+    <section class="tab" id="split">
+      <div class="eyebrow">Segmentation</div>
+      <h2>One store, two very different buyers</h2>
+      <p class="sectlead">Your store serves two people whose intent is almost opposite, so I would run them as two separate engines. Switch between them below to see how each one is built.</p>
+      <div class="toggle">
+        <button class="on" data-p="retail">Retail hobbyist</button>
+        <button data-p="whole">Wholesale bulk buyer</button>
+      </div>
+
+      <div class="persona show" id="retail">
+        <div class="grid g3">
+          <div class="card pcard"><div class="lab">Who they are</div><p class="who">DIY hobbyists and gift makers buying kits, molds, and small scents. Higher volume, lower order value.</p></div>
+          <div class="card pcard"><div class="lab">Search intent</div><div class="chips"><span class="chip">candle making kit</span><span class="chip">soy wax for beginners</span><span class="chip">how to make candles</span><span class="chip">small batch fragrance oil</span></div></div>
+          <div class="card pcard"><div class="lab">Engine</div><p>Shopping and Search on retail collections, plus a discovery PMax fed with clean assets.</p></div>
+          <div class="card pcard"><div class="lab">Landing page</div><p>Category and kit pages, fast and mobile first, priced clearly.</p></div>
+          <div class="card pcard"><div class="lab">Negatives</div><p>Finished candles, branded candle names, jobs, information only searches.</p></div>
+          <div class="card pcard"><div class="lab">Conversion</div><p>Online purchase, tracked with revenue value for true ROAS.</p></div>
+        </div>
+      </div>
+
+      <div class="persona" id="whole">
+        <div class="grid g3">
+          <div class="card pcard"><div class="lab">Who they are</div><p class="who">Small candle and soap businesses buying in bulk to resell. Lower volume, much higher order value and repeat rate.</p></div>
+          <div class="card pcard"><div class="lab">Search intent</div><div class="chips"><span class="chip">bulk soy wax</span><span class="chip">wholesale fragrance oil</span><span class="chip">fragrance oil by the case</span><span class="chip">candle supplies distributor</span></div></div>
+          <div class="card pcard"><div class="lab">Engine</div><p>High intent Search on commercial terms, plus Customer Match built from your existing buyer list.</p></div>
+          <div class="card pcard"><div class="lab">Landing page</div><p>A dedicated wholesale page. You do not have one today, I would build it.</p></div>
+          <div class="card pcard"><div class="lab">Negatives</div><p>Single, sample, beginner, and retail gift terms that waste bulk budget.</p></div>
+          <div class="card pcard"><div class="lab">Conversion</div><p>Bulk order or wholesale enquiry, tracked as a high value action.</p></div>
+        </div>
+      </div>
+      <div class="note"><b>Key gap:</b> there is no wholesale landing path on the store today, even though bulk buyers are half the goal. Building that is one of the fastest wins here.</div>
+    </section>
+
+    <!-- PLAN -->
+    <section class="tab" id="plan">
+      <div class="eyebrow">Roadmap</div>
+      <h2>First 30 days, in sequence</h2>
+      <p class="sectlead">No guesswork. Fix the foundation first, then rebuild, then scale what works.</p>
+      <div class="grid g2">
+        <div class="card phase"><div class="when">Days 1 to 7 &middot; Foundation</div><h3>Fix what money leaks through</h3><p>Full audit of feed, stock sync, and conversion tracking. Availability and revenue value fixed first, so every dollar after this is measured.</p></div>
+        <div class="card phase"><div class="when">Days 8 to 15 &middot; Rebuild</div><h3>Split retail and wholesale</h3><p>Restructure into separate Retail and Wholesale campaigns. Clean Shopping feed, new titles, and the first negative keyword lists.</p></div>
+        <div class="card phase"><div class="when">Days 16 to 23 &middot; Launch</div><h3>Go live, cut waste daily</h3><p>Shopping, Search, and a tight PMax go live. Daily negative sculpting removes wasted spend from the first click.</p></div>
+        <div class="card phase"><div class="when">Days 24 to 30 &middot; Optimize</div><h3>Shift budget to what converts</h3><p>Move spend toward winners, then deliver your first clear report on ROAS, CPA, and conversions.</p></div>
+      </div>
+
+      <div class="card report" style="margin-top:16px">
+        <div class="rk">The direction you should see every two weeks</div>
+        <div class="rtiles">
+          <div class="rtile"><div class="rv">ROAS <span class="up">&uarr;</span></div><div class="rl">Return on ad spend, climbing</div></div>
+          <div class="rtile"><div class="rv">CPA <span class="down">&darr;</span></div><div class="rl">Cost per sale, coming down</div></div>
+          <div class="rtile"><div class="rv">Sales <span class="up">&uarr;</span></div><div class="rl">Conversion volume, rising</div></div>
+          <div class="rtile"><div class="rv">Waste <span class="down">&darr;</span></div><div class="rl">Wasted spend, shrinking</div></div>
+        </div>
+        <p class="samplebadge">This is the shape of progress, not a promise of exact figures. Every number I report comes straight from live dashboards, so you always see the real picture.</p>
+      </div>
+    </section>
+
+    <!-- PROOF -->
+    <section class="tab" id="proof">
+      <div class="eyebrow">Track record</div>
+      <h2>Why I can fix this fast</h2>
+      <p class="sectlead">Shopify e-commerce is my core lane. Numbers below are from live Google Ads and Analytics dashboards.</p>
+      <div class="proofrow">
+        <div class="card pf"><div class="v">$5.6M</div><div class="l">Shopify revenue driven in a single year</div></div>
+        <div class="card pf"><div class="v">$15.5M</div><div class="l">Ad spend managed over 12 years</div></div>
+        <div class="card pf"><div class="v">9.2x</div><div class="l">Peak return on ad spend</div></div>
+        <div class="card pf"><div class="v">977</div><div class="l">Campaigns across Search, Shopping, PMax</div></div>
+      </div>
+      <div class="badges">
+        <span class="badge">Shopify Partner</span>
+        <span class="badge">GA4 &amp; GTM Certified</span>
+        <span class="badge">Google Ads Certified</span>
+        <span class="badge">Meta Blueprint</span>
+        <span class="badge">Top Rated Plus on Upwork</span>
+      </div>
+      <div class="closer">
+        <p class="big">You are already paying for the traffic. The next step is making sure it pays you back.</p>
+        <p>If it helps, I can put together a full audit of your account, feed, and tracking within 48 hours, at no cost, so you can see the exact numbers before deciding anything. Recent dashboard reports are available whenever you want them.</p>
+      </div>
+      <div class="footer">Prepared privately for NorthWood Candle &amp; Craft. Confidential.</div>
+    </section>
+  </main>
+</div>
+
+<script>
+  const nav = document.getElementById('nav');
+  const tabs = document.querySelectorAll('.tab');
+  function go(id){
+    document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active', b.dataset.tab===id));
+    tabs.forEach(t=>t.classList.toggle('show', t.id===id));
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  nav.addEventListener('click', e=>{ const b=e.target.closest('.navbtn'); if(b) go(b.dataset.tab); });
+  document.querySelector('.cta').addEventListener('click', e=>{ e.preventDefault(); go(e.target.dataset.tab); });
+
+  // persona toggle
+  document.querySelectorAll('.toggle button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.toggle button').forEach(b=>b.classList.toggle('on', b===btn));
+      document.querySelectorAll('.persona').forEach(p=>p.classList.toggle('show', p.id===btn.dataset.p));
+    });
+  });
+</script>
+</body>
+</html>
